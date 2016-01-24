@@ -5,17 +5,15 @@ extends Node2D
 # var a=2
 # var b="textvar"
 var i
-var AntScene
-var AntNode
-var AntNPC = []
+var antNode = load("res://FourmiNPC.scn")
+var antNPCS = []
+var ant
 func _ready():
 	# Initialization here
-	
-	AntScene = load("res://FourmiNPC.scn")
-	AntNode = AntScene.instance()
 	randomize()
 	for i in range(10):
-		AntNPC[i] = add_child(AntNode)
-		AntNPC[i].x = randi() % 10
-		AntNPC[i].y = randi() % 10
+		ant = antNode.instance()
+		ant.set_pos(Vector2(randi() % 1000 - 500,randi() % 1000 - 500))
+		add_child(ant)
+		antNPCS.append(ant)
 	pass
