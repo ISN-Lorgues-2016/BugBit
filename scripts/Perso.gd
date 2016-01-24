@@ -7,42 +7,40 @@ extends KinematicBody2D
 const VITESSE_MARCHE = 100
 var vitesse = Vector2()
 var rotation = 0
-var rotationY = 0
-var rotationX = 0
-var bougeX = 0
-var bougeY = 0
-
+var mouvement
 func _fixed_process(delta):
 	vitesse.x = 0
 	vitesse.y = 0
-	bougeX = 0
-	bougeY = 0
-	if (Input.is_action_pressed("move_down")):
-		vitesse.y = VITESSE_MARCHE
-		rotationY = PI
-		bougeY = 1
-	if (Input.is_action_pressed("move_up")):
-		vitesse.y = -VITESSE_MARCHE
-		rotationY = 0
-		bougeY = 1
-	if (Input.is_action_pressed("move_left")):
+	if (Input.is_action_pressed("move_down") && Input.is_action_pressed("move_left")):
 		vitesse.x = -VITESSE_MARCHE
-		rotationX = PI/2
-		bougeX = 1
-	if (Input.is_action_pressed("move_right")):
+		vitesse.y = VITESSE_MARCHE
+		rotation = 3*PI/4
+	elif (Input.is_action_pressed("move_up") && Input.is_action_pressed("move_left")):
+		vitesse.x = -VITESSE_MARCHE
+		vitesse.y = -VITESSE_MARCHE
+		rotation = PI/4
+	elif (Input.is_action_pressed("move_down") && Input.is_action_pressed("move_right")):
 		vitesse.x = VITESSE_MARCHE
-		rotationX= PI+PI/2
-		bougeX = 1
-	if ((bougeX) && (!bougeY)):
-		rotation = rotationX
-	if ((!bougeX) && (bougeY)):
-		rotation = rotationY
-	if ((bougeX) && (bougeY)):
-		if ((rotationY == 0)&&(rotationX >= PI)):
-			rotationY -= 2*PI
-		rotation = (rotationX + rotationY)/2
+		vitesse.y = VITESSE_MARCHE
+		rotation= -3*PI/4
+	elif (Input.is_action_pressed("move_up") && Input.is_action_pressed("move_right")):
+		vitesse.x = VITESSE_MARCHE
+		vitesse.y = -VITESSE_MARCHE
+		rotation= -PI/4
+	elif (Input.is_action_pressed("move_up")):
+		vitesse.y = -VITESSE_MARCHE
+		rotation = 0
+	elif (Input.is_action_pressed("move_down")):
+		vitesse.y = VITESSE_MARCHE
+		rotation = PI
+	elif (Input.is_action_pressed("move_left")):
+		vitesse.x = -VITESSE_MARCHE
+		rotation = PI/2
+	elif (Input.is_action_pressed("move_right")):
+		vitesse.x = VITESSE_MARCHE
+		rotation = -PI/2
 	set_rot(rotation)
-	var mouvement = vitesse * delta
+	mouvement = vitesse * delta
 	move(mouvement)
 
 
