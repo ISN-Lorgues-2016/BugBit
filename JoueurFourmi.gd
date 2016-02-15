@@ -1,14 +1,8 @@
 
-extends KinematicBody2D
+extends Node2D
 # member variables here, example:
 # var a=2
 # var b="textvar"
-
-export var NOMBREFOURMIS = 10
-export var NOMBRENOUR = 5
-export var fourmiNPCS = []
-export var nourriture = []
-
 const VITESSE_MARCHE = 100
 var vitesse = Vector2()
 var rotation = 0
