@@ -40,10 +40,12 @@ func _ready():
 	add_child(joueur)
 	joueur.set_pos(Vector2(0,0))
 	set_fixed_process(true)
+	screen = get_tree().get_root().get_rect().size
 
 
 func _fixed_process(delta):
-	barrefaim.set_pos(Vector2(joueur.get_pos().x - 360, joueur.get_pos().y - 180))
+	barrefaim.set_pos(Vector2(joueur.get_node("Camera").get_camera_screen_center().x-screen.x/2,joueur.get_node("Camera").get_camera_screen_center().y-screen.y/2))
+	#barrefaim.set_pos(Vector2(joueur.get_pos().x - 360, joueur.get_pos().y - 180))
 	if (faim > 100): faim = 100
 	faim -= delta*0.2
 	barrefaim.set_val(faim)
@@ -52,12 +54,12 @@ func _fixed_process(delta):
 			var distance = sqrt((nourriture[j].get_pos().x-fourmiNPCS[i].get_pos().x)*(nourriture[j].get_pos().x-fourmiNPCS[i].get_pos().x)+(nourriture[j].get_pos().y-fourmiNPCS[i].get_pos().y)*(nourriture[j].get_pos().y-fourmiNPCS[i].get_pos().y))
 			if (distance<10):
 				nourriture[j].set_pos(Vector2(randi() % 1000 - 500,randi() % 1000 - 500))
-				print("OKNPC")
-				print(distance)
+				#print("OKNPC")
+				#print(distance)
 	for j in range(NOMBRENOUR):
 		var distance = sqrt((nourriture[j].get_pos().x-joueur.get_pos().x)*(nourriture[j].get_pos().x-joueur.get_pos().x)+(nourriture[j].get_pos().y-joueur.get_pos().y)*(nourriture[j].get_pos().y-joueur.get_pos().y))
 		if (distance<10):
 			nourriture[j].set_pos(Vector2(randi() % 1000 - 500,randi() % 1000 - 500))
 			faim += 10
 			get_node("SamplePlayer").play("ANT-Wassali2")
-			print("OKP")
+			#print("OKP")
