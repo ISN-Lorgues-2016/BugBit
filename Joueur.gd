@@ -7,6 +7,7 @@ const VITESSE_MARCHE = 100
 var vitesse = Vector2()
 var rotation = 0
 var mouvement
+
 func _fixed_process(delta):
 	vitesse.x = 0
 	vitesse.y = 0
