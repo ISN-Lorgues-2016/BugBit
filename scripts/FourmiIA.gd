@@ -10,6 +10,7 @@ var mouvement = 0
 var objectif = Vector2()
 var distance = 100
 var temps = 0
+var tempsMax = 10
 func _ready():
 	# Initialization here
 	randomize()
@@ -18,7 +19,8 @@ func _ready():
 	
 	
 func _fixed_process(delta):
-	if (temps > 10):
+	tempsMax = randi()%10+5
+	if (temps > tempsMax):
 		objectif.x = randi() % 1000 - get_global_pos().x - 500
 		objectif.y = randi() % 1000 - get_global_pos().y - 500
 		temps = 0

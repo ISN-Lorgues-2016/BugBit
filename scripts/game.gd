@@ -17,6 +17,7 @@ var joueur
 var barrefaim
 var faim = 100
 var screen 
+var refcamera = Vector2()
 func _ready():
 	# Initialization here
 	randomize()
@@ -44,7 +45,8 @@ func _ready():
 
 
 func _fixed_process(delta):
-	barrefaim.set_pos(Vector2(joueur.get_node("Camera").get_camera_screen_center().x-screen.x/2,joueur.get_node("Camera").get_camera_screen_center().y-screen.y/2))
+	refcamera = Vector2(joueur.get_node("Camera").get_camera_screen_center().x-screen.x/2,joueur.get_node("Camera").get_camera_screen_center().y-screen.y/2)
+	barrefaim.set_pos(refcamera)
 	#barrefaim.set_pos(Vector2(joueur.get_pos().x - 360, joueur.get_pos().y - 180))
 	if (faim > 100): faim = 100
 	faim -= delta*0.2
