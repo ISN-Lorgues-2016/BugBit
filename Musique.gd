@@ -7,6 +7,7 @@ var song3
 var song4
 var songn = 0
 var currentSong = song1
+var musique = false
 
 func _ready():
 	set_process(true)
@@ -19,7 +20,8 @@ func _ready():
 
    
 func _process(delta):
-	if(self.is_playing() != true):
+	musique = Globals.get("MUSIQUE")
+	if((self.is_playing() != true) && (musique == true)):
 		songn = randi()%4
 		if (songn == 0):
 			self.set_stream(song1)
