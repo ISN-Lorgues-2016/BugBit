@@ -49,7 +49,7 @@ func _fixed_process(delta):
 	barrefaim.set_pos(refcamera)
 	#barrefaim.set_pos(Vector2(joueur.get_pos().x - 360, joueur.get_pos().y - 180))
 	if (faim > 100): faim = 100
-	faim -= delta*0.2
+	faim -= delta*0.3
 	barrefaim.set_val(faim)
 	for i in range(NOMBREFOURMIS):
 		for j in range(NOMBRENOUR):
