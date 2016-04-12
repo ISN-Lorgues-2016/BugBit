@@ -7,8 +7,12 @@ const VITESSE_MARCHE = 100
 var vitesse = Vector2()
 var rotation = 0
 var mouvement
+var menuVerif = false
+var menuVerifTemps = 0
+var tempsMenu = 0
 
 func _fixed_process(delta):
+	tempsMenu += delta
 	vitesse.x = 0
 	vitesse.y = 0
 	if (Input.is_action_pressed("move_down") && Input.is_action_pressed("move_left")):
@@ -42,6 +46,16 @@ func _fixed_process(delta):
 	set_rot(rotation)
 	mouvement = vitesse * delta
 	move(mouvement)
+	if (Input.is_action_pressed("player_menu") && tempsMenu > 0.5):
+		tempsMenu = 0
+		if (menuVerif == true):
+			Globals.set("MENU",true)
+			print("ok")
+			menuVerif = false
+		else:
+			Globals.set("MENU",false)
+			print("non")
+			menuVerif = true
 
 
 func _ready():

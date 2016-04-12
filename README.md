@@ -1,2 +1,2 @@
-# BugBit
+# BugSect
 Projet d'ISN
