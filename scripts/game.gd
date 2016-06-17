@@ -113,7 +113,7 @@ func gerActions():
 	Globals.set("ACTION", "Aucune")
 
 func gerUI():
-	refcamera = Vector2(joueur.get_node("Camera").get_camera_screen_center().x-screen.x/2,joueur.get_node("Camera").get_camera_screen_center().y-screen.y/2)
+	refcamera = Vector2(joueur.get_node("Camera").get_camera_pos().x - OS.get_window_size().x/3,joueur.get_node("Camera").get_camera_pos().y - OS.get_window_size().y/3)
 #	refjoueur = Vector2(joueur.get_node("Camera").get_camera_screen_center().x,joueur.get_node("Camera").get_camera_screen_center().y)
 	refjoueur = joueur.get_pos()
 	barreEnergie.set_pos(refcamera)
